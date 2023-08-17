@@ -1877,26 +1877,6 @@
             otherwise it will have the same number of channels as src and the depth =CV_MAT_DEPTH(rtype)</param>
             <param name="mask">The optional operation mask</param>
         </member>
-        <member name="M:OpenCvSharp.Cv2.ReduceArgMax(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Int32,System.Boolean)">
-            <summary>
-            Finds indices of max elements along provided axis
-            </summary>
-            <param name="src">Input single-channel array</param>
-            <param name="dst">Output array of type CV_32SC1 with the same dimensionality as src,
-            except for axis being reduced - it should be set to 1.</param>
-            <param name="axis">Axis to reduce along</param>
-            <param name="lastIndex">Whether to get the index of first or last occurrence of max</param>
-        </member>
-        <member name="M:OpenCvSharp.Cv2.ReduceArgMin(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Int32,System.Boolean)">
-            <summary>
-            Finds indices of min elements along provided axis
-            </summary>
-            <param name="src">Input single-channel array</param>
-            <param name="dst">Output array of type CV_32SC1 with the same dimensionality as src,
-            except for axis being reduced - it should be set to 1.</param>
-            <param name="axis">Axis to reduce along</param>
-            <param name="lastIndex">Whether to get the index of first or last occurrence of min</param>
-        </member>
         <member name="M:OpenCvSharp.Cv2.MinMaxLoc(OpenCvSharp.InputArray,System.Double@,System.Double@)">
             <summary>
             finds global minimum and maximum array elements and returns their values and their locations
@@ -2784,6 +2764,14 @@
             <param name="val"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Cv2.Glob(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="pattern"></param>
+            <param name="recursive"></param>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.Cv2.SetNumThreads(System.Int32)">
             <summary>
             OpenCV will try to set the number of threads for the next parallel region.
@@ -2975,19 +2963,6 @@
             <param name="mtx"></param>
             <param name="format"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Cv2.SetLogLevel(OpenCvSharp.LogLevel)">
-            <summary>
-            Set global logging level
-            </summary>
-            <param name="logLevel">logging level</param>
-            <returns>previous logging level</returns>
-        </member>
-        <member name="M:OpenCvSharp.Cv2.GetLogLevel">
-            <summary>
-            Get global logging level
-            </summary>
-            <returns>logging level</returns>
         </member>
         <member name="M:OpenCvSharp.Cv2.Abs(OpenCvSharp.Mat)">
             <summary>
@@ -4239,15 +4214,6 @@
             <param name="dstSize">size of the output image; by default, it is computed as Size((src.cols+1)/2</param>
             <param name="borderType"></param>
         </member>
-        <member name="M:OpenCvSharp.Cv2.BuildPyramid(OpenCvSharp.InputArray,OpenCvSharp.Internal.Vectors.VectorOfMat,System.Int32,OpenCvSharp.BorderTypes)">
-            <summary> 
-            </summary>
-            <param name="src"></param>
-            <param name="dst"></param>
-            <param name="maxlevel"></param>
-            <param name="borderType"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
         <member name="M:OpenCvSharp.Cv2.PyrUp(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Nullable{OpenCvSharp.Size},OpenCvSharp.BorderTypes)">
             <summary>
             Upsamples an image and then blurs it.
@@ -4494,8 +4460,7 @@
             being added to the component.</param>
             <param name="flags">Operation flags. Lower bits contain a connectivity value, 
             4 (default) or 8, used within the function. Connectivity determines which 
-            neighbors of a pixel are considered. Using FloodFillFlags.MaskOnly will
-            fill in the mask using the grey value 255 (white). </param>
+            neighbors of a pixel are considered. </param>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.Cv2.FloodFill(OpenCvSharp.InputOutputArray,OpenCvSharp.InputOutputArray,OpenCvSharp.Point,OpenCvSharp.Scalar)">
@@ -4538,8 +4503,7 @@
             being added to the component.</param>
             <param name="flags">Operation flags. Lower bits contain a connectivity value, 
             4 (default) or 8, used within the function. Connectivity determines which 
-            neighbors of a pixel are considered. Using FloodFillFlags.MaskOnly will
-            fill in the mask using the grey value 255 (white). </param>
+            neighbors of a pixel are considered. </param>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.Cv2.BlendLinear(OpenCvSharp.InputArray,OpenCvSharp.InputArray,OpenCvSharp.InputArray,OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
@@ -6470,36 +6434,6 @@
             Unmanaged OpenCV data pointer
             </summary>
         </member>
-        <member name="T:OpenCvSharp.MatMemoryManager`1">
-            <summary>
-            A MemoryManager over an OpenCvSharpMat
-            </summary>
-            <remarks>The pointer is assumed to be fully unmanaged, or externally pinned - no attempt will be made to pin this data</remarks>
-        </member>
-        <member name="M:OpenCvSharp.MatMemoryManager`1.#ctor(OpenCvSharp.Mat,System.Boolean)">
-            <summary>
-            Create a new UnmanagedMemoryManager instance at the given pointer and size
-            </summary>
-            <remarks>It is assumed that the span provided is already unmanaged or externally pinned</remarks>
-        </member>
-        <member name="M:OpenCvSharp.MatMemoryManager`1.GetSpan">
-            <inheritdoc />
-        </member>
-        <member name="M:OpenCvSharp.MatMemoryManager`1.Pin(System.Int32)">
-            <summary>
-            Provides access to a pointer that represents the data (note: no actual pin occurs)
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.MatMemoryManager`1.Unpin">
-            <summary>
-            Has no effect
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.MatMemoryManager`1.Dispose(System.Boolean)">
-            <summary>
-            Releases all resources associated with this object
-            </summary>
-        </member>
         <member name="T:OpenCvSharp.OpenCVException">
             <summary>
             The default exception to be thrown by OpenCV 
@@ -8240,30 +8174,22 @@
             <param name="borderColor">color of marker borders. Rest of colors (text color and first corner color)
              are calculated based on this one to improve visualization.</param>
         </member>
+        <member name="M:OpenCvSharp.Aruco.CvAruco.DrawMarker(OpenCvSharp.Aruco.Dictionary,System.Int32,System.Int32,OpenCvSharp.OutputArray,System.Int32)">
+            <summary>
+            Draw a canonical marker image
+            </summary>
+            <param name="dictionary">dictionary of markers indicating the type of markers</param>
+            <param name="id">identifier of the marker that will be returned. It has to be a valid id in the specified dictionary.</param>
+            <param name="sidePixels">size of the image in pixels</param>
+            <param name="mat">output image with the marker</param>
+            <param name="borderBits">width of the marker border.</param>
+        </member>
         <member name="M:OpenCvSharp.Aruco.CvAruco.GetPredefinedDictionary(OpenCvSharp.Aruco.PredefinedDictionaryName)">
             <summary>
             Returns one of the predefined dictionaries defined in PREDEFINED_DICTIONARY_NAME
             </summary>
             <param name="name"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.CvAruco.ReadDictionary(System.String)">
-            <summary>
-            Reads a new dictionary from FileNode.
-            </summary>
-            <remarks>
-            Dictionary format is YAML see sample below
-            <code>
-            nmarkers: 35
-            markersize: 6
-            maxCorrectionBits: 5
-            marker_0: "101011111011111001001001101100000000"
-            ...
-            marker_34: "011111010000111011111110110101100101"
-            </code>
-            </remarks>
-            <param name="dictionaryFile">The path of the dictionary file</param>
-            <returns>Instance of a Dictionary</returns>
         </member>
         <member name="M:OpenCvSharp.Aruco.CvAruco.DetectCharucoDiamond(OpenCvSharp.InputArray,OpenCvSharp.Point2f[][],System.Collections.Generic.IEnumerable{System.Int32},System.Single,OpenCvSharp.Point2f[][]@,OpenCvSharp.Vec4i[]@,OpenCvSharp.InputArray,OpenCvSharp.InputArray)">
             <summary>
@@ -8300,185 +8226,167 @@
             Parameters for the detectMarker process
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeMin">
+        <member name="M:OpenCvSharp.Aruco.DetectorParameters.Create">
+            <summary> 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeMin">
             <summary>
             minimum window size for adaptive thresholding before finding contours (default 3).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeMax">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeMax">
             <summary>
             adaptiveThreshWinSizeMax: maximum window size for adaptive thresholding before finding contours(default 23).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeStep">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshWinSizeStep">
             <summary>
             increments from adaptiveThreshWinSizeMin to adaptiveThreshWinSizeMax during the thresholding(default 10).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshConstant">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AdaptiveThreshConstant">
             <summary>
             constant for adaptive thresholding before finding contours (default 7)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinMarkerPerimeterRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MinMarkerPerimeterRate">
             <summary>
             determine minimum perimeter for marker contour to be detected. 
             This is defined as a rate respect to the maximum dimension of the input image(default 0.03).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MaxMarkerPerimeterRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MaxMarkerPerimeterRate">
             <summary>
              determine maximum perimeter for marker contour to be detected. 
             This is defined as a rate respect to the maximum dimension of the input image(default 4.0).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.PolygonalApproxAccuracyRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.PolygonalApproxAccuracyRate">
             <summary>
             minimum accuracy during the polygonal approximation process to determine which contours are squares.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinCornerDistanceRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MinCornerDistanceRate">
             <summary>
             minimum distance between corners for detected markers relative to its perimeter(default 0.05)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinDistanceToBorder">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MinDistanceToBorder">
             <summary>
              minimum distance of any corner to the image border for detected markers (in pixels) (default 3)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinMarkerDistanceRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MinMarkerDistanceRate">
             <summary>
             minimum mean distance between two marker corners to be considered similar, 
             so that the smaller one is removed.The rate is relative to the smaller perimeter of the two markers(default 0.05).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMethod">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMethod">
             <summary>
             corner refinement method.
             (CORNER_REFINE_NONE, no refinement. CORNER_REFINE_SUBPIX, do subpixel refinement. CORNER_REFINE_CONTOUR use contour-Points)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementWinSize">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementWinSize">
             <summary>
             window size for the corner refinement process (in pixels) (default 5).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMaxIterations">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMaxIterations">
             <summary>
             maximum number of iterations for stop criteria of the corner refinement process(default 30).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMinAccuracy">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.CornerRefinementMinAccuracy">
             <summary>
             minimum error for the stop criteria of the corner refinement process(default: 0.1)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MarkerBorderBits">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MarkerBorderBits">
             <summary>
             number of bits of the marker border, i.e. marker border width (default 1).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.PerspectiveRemovePixelPerCell">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.PerspectiveRemovePixelPerCell">
             <summary>
             number of bits (per dimension) for each cell of the marker when removing the perspective(default 8).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.PerspectiveRemoveIgnoredMarginPerCell">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.PerspectiveRemoveIgnoredMarginPerCell">
             <summary>
             width of the margin of pixels on each cell not considered for the determination 
             of the cell bit.Represents the rate respect to the total  size of the cell, 
             i.e. perspectiveRemovePixelPerCell (default 0.13)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MaxErroneousBitsInBorderRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MaxErroneousBitsInBorderRate">
             <summary>
             maximum number of accepted erroneous bits in the border 
             (i.e. number of allowed white bits in the border). Represented as a rate respect to the total 
             number of bits per marker(default 0.35).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinOtsuStdDev">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.MinOtsuStdDev">
             <summary>
             minimun standard deviation in pixels values during the decodification step to
              apply Otsu thresholding(otherwise, all the bits are set to 0 or 1 depending on mean higher than 128 or not) (default 5.0)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.ErrorCorrectionRate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.ErrorCorrectionRate">
             <summary>
             errorCorrectionRate error correction rate respect to the maximun error correction capability for each dictionary. (default 0.6).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagQuadDecimate">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagQuadDecimate">
             <summary>
             Detection of quads can be done on a lower-resolution image, improving speed at a cost of pose accuracy and a slight decrease in detection rate.
             Decoding the binary payload is still done at full resolution.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagQuadSigma">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagQuadSigma">
             <summary>
             What Gaussian blur should be applied to the segmented image (used for quad detection?) Parameter is the standard deviation in pixels.
             Very noisy images benefit from non-zero values (e.g. 0.8).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagMinClusterPixels">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagMinClusterPixels">
             <summary>
             reject quads containing too few pixels.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagMaxNmaxima">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagMaxNmaxima">
             <summary>
             how many corner candidates to consider when segmenting a group of pixels into a quad.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagCriticalRad">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagCriticalRad">
             <summary>
             Reject quads where pairs of edges have angles that are close to straight or close to 180 degrees. Zero means that no quads are rejected. (In radians).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagMaxLineFitMse">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagMaxLineFitMse">
             <summary>
             When fitting lines to the contours, what is the maximum mean squared error allowed?
             This is useful in rejecting contours that are far from being quad shaped; rejecting these quads "early" saves expensive decoding processing.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagMinWhiteBlackDiff">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagDeglitch">
+            <summary>
+            should the thresholded image be deglitched? Only useful for very noisy images
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.AprilTagMinWhiteBlackDiff">
             <summary>
             When we build our model of black &amp; white pixels, we add an extra check that the white model must be (overall) brighter than the black model.
             How much brighter? (in pixel values, [0,255]).
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.AprilTagDeglitch">
-            <summary>
-            should the thresholded image be deglitched? Only useful for very noisy images
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.DetectInvertedMarker">
+        <member name="P:OpenCvSharp.Aruco.DetectorParameters.DetectInvertedMarker">
             <summary>
             to check if there is a white marker. In order to generate a "white" marker just invert a normal marker by using a tilde, ~markerImage. (default false)
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.UseAruco3Detection">
-            <summary>
-            enable the new and faster Aruco detection strategy.
-            Proposed in the paper:
-            * Romero-Ramirez et al: Speeded up detection of squared fiducial markers (2018)
-            * https://www.researchgate.net/publication/325787310_Speeded_Up_Detection_of_Squared_Fiducial_Markers
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinSideLengthCanonicalImg">
-            <summary>
-            minimum side length of a marker in the canonical image. Latter is the binarized image in which contours are searched. 
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Aruco.DetectorParameters.MinMarkerLengthRatioOriginalImg">
-            <summary>
-            range [0,1], eq (2) from paper. The parameter tau_i has a direct influence on the processing speed.
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.DetectorParameters.#ctor">
-            <summary>
-            Constructor
             </summary>
         </member>
         <member name="T:OpenCvSharp.Aruco.Dictionary">
@@ -8486,14 +8394,19 @@
             Dictionary/Set of markers. It contains the inner codification
             </summary>
         </member>
+        <member name="P:OpenCvSharp.Aruco.Dictionary.ObjectPtr">
+            <summary>
+            cv::Ptr&lt;T&gt;
+            </summary>
+        </member>
         <member name="M:OpenCvSharp.Aruco.Dictionary.#ctor(System.IntPtr)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.DisposeUnmanaged">
+        <member name="M:OpenCvSharp.Aruco.Dictionary.DisposeManaged">
             <summary>
-            Releases unmanaged resources
+            Releases managed resources
             </summary>
         </member>
         <member name="P:OpenCvSharp.Aruco.Dictionary.BytesList">
@@ -8510,51 +8423,6 @@
             <summary>
             Maximum number of bits that can be corrected.
             </summary>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.Identify(OpenCvSharp.Mat,System.Int32@,System.Int32@,System.Double)">
-            <summary>
-            Given a matrix of bits. Returns whether if marker is identified or not.
-            It returns by reference the correct id (if any) and the correct rotation
-            </summary>
-            <param name="onlyBits"></param>
-            <param name="idx"></param>
-            <param name="rotation"></param>
-            <param name="maxCorrectionRate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.GetDistanceToId(OpenCvSharp.InputArray,System.Int32,System.Boolean)">
-            <summary>
-            Returns the distance of the input bits to the specific id.
-            If allRotations is true, the four possible bits rotation are considered
-            </summary>
-            <param name="bits"></param>
-            <param name="id"></param>
-            <param name="allRotations"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.GenerateImageMarker(System.Int32,System.Int32,OpenCvSharp.OutputArray,System.Int32)">
-            <summary>
-            Generate a canonical marker image
-            </summary>
-            <param name="id"></param>
-            <param name="sidePixels"></param>
-            <param name="img"></param>
-            <param name="borderBits"></param>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.GetByteListFromBits(OpenCvSharp.Mat)">
-            <summary>
-            Transform matrix of bits to list of bytes in the 4 rotations
-            </summary>
-            <param name="bits"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Aruco.Dictionary.GetBitsFromByteList(OpenCvSharp.Mat,System.Int32)">
-            <summary>
-            Transform list of bytes to matrix of bits
-            </summary>
-            <param name="byteList"></param>
-            <param name="markerSize"></param>
-            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Aruco.CornerRefineMethod">
             <summary>
@@ -10053,46 +9921,6 @@
             user-supplied labels instead of computing them from the initial centers. 
             For the second and further attempts, use the random or semi-random centers. 
             Use one of KMEANS_\*_CENTERS flag to specify the exact method.
-            </summary>
-        </member>
-        <member name="T:OpenCvSharp.LogLevel">
-            <summary>
-            cv::utils::logging::LogLevel
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.SILENT">
-            <summary>
-            for using in setLogVevel() call
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.FATAL">
-            <summary>
-            Fatal (critical) error (unrecoverable internal error)
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.ERROR">
-            <summary>
-            Error message.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.WARNING">
-            <summary>
-            Warning message.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.INFO">
-            <summary>
-            Info message.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.DEBUG">
-            <summary>
-            Debug message. Disabled in the "Release" build.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LogLevel.VERBOSE">
-            <summary>
-            Verbose (trace) messages. Requires verbosity level. Disabled in the "Release" build.
             </summary>
         </member>
         <member name="T:OpenCvSharp.MatDiagType">
@@ -13901,13 +13729,6 @@
             </summary>
             <param name="operation"></param>
         </member>
-        <member name="M:OpenCvSharp.Mat.AsSpan``1">
-            <summary>
-            Creates a new span over the Mat.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:OpenCvSharp.Mat.Abs">
             <summary>
             Computes absolute value of each matrix element
@@ -14916,14 +14737,6 @@
             Upsamples an image and then blurs it.
             </summary>
             <param name="dstSize">size of the output image; by default, it is computed as Size(src.cols*2, (src.rows*2)</param>
-            <param name="borderType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Mat.BuildPyramid(System.Int32,OpenCvSharp.BorderTypes)">
-            <summary>
-            Upsamples an image and then blurs it.
-            </summary>
-            <param name="maxlevel"></param>
             <param name="borderType"></param>
             <returns></returns>
         </member>
@@ -19903,16 +19716,6 @@
             <param name="size"></param>
             <param name="angle"></param>
         </member>
-        <member name="M:OpenCvSharp.RotatedRect.#ctor(OpenCvSharp.Point2f,OpenCvSharp.Point2f,OpenCvSharp.Point2f)">
-            <summary>
-            Any 3 end points of the RotatedRect. They must be given in order (either clockwise or anticlockwise).
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.RotatedRect.FromThreeVertexPoints(OpenCvSharp.Point2f,OpenCvSharp.Point2f,OpenCvSharp.Point2f)">
-            <summary>
-            Any 3 end points of the RotatedRect. They must be given in order (either clockwise or anticlockwise).
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.RotatedRect.Points">
             <summary>
             returns 4 vertices of the rectangle
@@ -20773,19 +20576,19 @@
             </summary>
         </member>
         <member name="T:OpenCvSharp.Size">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size.Width">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size.Height">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="M:OpenCvSharp.Size.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -20822,16 +20625,6 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
-        <member name="M:OpenCvSharp.Size.op_Explicit(OpenCvSharp.Size2d)~OpenCvSharp.Size">
-            <summary> 
-            </summary>
-            <param name="size"></param>
-        </member>
-        <member name="M:OpenCvSharp.Size.op_Explicit(OpenCvSharp.Size2f)~OpenCvSharp.Size">
-            <summary> 
-            </summary>
-            <param name="size"></param>
-        </member>
         <member name="M:OpenCvSharp.Size.Equals(OpenCvSharp.Size)">
             <inheritdoc />
         </member>
@@ -20845,19 +20638,19 @@
             <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Size2d">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size2d.Width">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size2d.Height">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="M:OpenCvSharp.Size2d.#ctor(System.Single,System.Single)">
             <summary>
@@ -20889,16 +20682,6 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
-        <member name="M:OpenCvSharp.Size2d.op_Implicit(OpenCvSharp.Size)~OpenCvSharp.Size2d">
-            <summary> 
-            </summary>
-            <param name="size"></param>
-        </member>
-        <member name="M:OpenCvSharp.Size2d.op_Implicit(OpenCvSharp.Size2f)~OpenCvSharp.Size2d">
-            <summary> 
-            </summary>
-            <param name="size"></param>
-        </member>
         <member name="M:OpenCvSharp.Size2d.Equals(OpenCvSharp.Size2d)">
             <inheritdoc />
         </member>
@@ -20912,19 +20695,19 @@
             <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Size2f">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size2f.Width">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="F:OpenCvSharp.Size2f.Height">
-             <summary>
+            <summary>
             
-             </summary>
+            </summary>
         </member>
         <member name="M:OpenCvSharp.Size2f.#ctor(System.Single,System.Single)">
             <summary>
@@ -20955,16 +20738,6 @@
             <param name="lhs">A Point to compare.</param>
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
-        </member>
-        <member name="M:OpenCvSharp.Size2f.op_Implicit(OpenCvSharp.Size)~OpenCvSharp.Size2f">
-            <summary> 
-            </summary>
-            <param name="size"></param>
-        </member>
-        <member name="M:OpenCvSharp.Size2f.op_Explicit(OpenCvSharp.Size2d)~OpenCvSharp.Size2f">
-            <summary> 
-            </summary>
-            <param name="size"></param>
         </member>
         <member name="M:OpenCvSharp.Size2f.Equals(OpenCvSharp.Size2f)">
             <inheritdoc />
@@ -27903,27 +27676,6 @@
             thus, can be used directly for pixel interpolation. Otherwise, the function finds the inverse transform from map_matrix. 
             </summary>
         </member>
-        <member name="T:OpenCvSharp.LineSegmentDetectorModes">
-            <summary>
-            Variants of Line Segment %Detector
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LineSegmentDetectorModes.RefineNone">
-            <summary>
-            No refinement applied
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LineSegmentDetectorModes.RefineStd">
-            <summary>
-            Standard refinement is applied. E.g. breaking arches into smaller straighter line approximations.
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LineSegmentDetectorModes.RefineAdv">
-            <summary>
-            Advanced refinement. Number of false alarms is calculated, lines are
-            refined through increase of precision, decrement in size, etc.
-            </summary>
-        </member>
         <member name="T:OpenCvSharp.LineTypes">
             <summary>
             Type of the line
@@ -28697,87 +28449,6 @@
             </summary>
             <param name="pos"></param>
             <param name="ptr"></param>
-        </member>
-        <member name="T:OpenCvSharp.LineSegmentDetector">
-            <summary>
-            Line segment detector class
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.LineSegmentDetector.ptrObj">
-            <summary>
-            cv::Ptr&lt;LineSegmentDetector&gt;
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.#ctor(System.IntPtr)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.Create(OpenCvSharp.LineSegmentDetectorModes,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Int32)">
-            <summary>
-            Creates a smart pointer to a LineSegmentDetector object and initializes it.
-            </summary>
-            <param name="refine">The way found lines will be refined, see cv::LineSegmentDetectorModes</param>
-            <param name="scale">The scale of the image that will be used to find the lines. Range (0..1].</param>
-            <param name="sigmaScale">Sigma for Gaussian filter. It is computed as sigma = _sigma_scale/_scale.</param>
-            <param name="quant">Bound to the quantization error on the gradient norm.</param>
-            <param name="angTh">Gradient angle tolerance in degrees.</param>
-            <param name="logEps">Detection threshold: -log10(NFA) \> log_eps. 
-            Used only when advancent refinement is chosen.</param>
-            <param name="densityTh">Minimal density of aligned region points in the enclosing rectangle.</param>
-            <param name="nBins">Number of bins in pseudo-ordering of gradient modulus.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.DisposeManaged">
-            <summary>
-            Releases managed resources
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.Detect(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,OpenCvSharp.OutputArray,OpenCvSharp.OutputArray,OpenCvSharp.OutputArray)">
-            <summary>
-            Finds lines in the input image.
-            This is the output of the default parameters of the algorithm on the above shown image.
-            </summary>
-            <param name="image">A grayscale (CV_8UC1) input image. </param>
-            <param name="lines">A vector of Vec4i or Vec4f elements specifying the beginning and ending point of a line. 
-            Where Vec4i/Vec4f is (x1, y1, x2, y2), point 1 is the start, point 2 - end. Returned lines are strictly oriented depending on the gradient.</param>
-            <param name="width">Vector of widths of the regions, where the lines are found. E.g. Width of line.</param>
-            <param name="prec">Vector of precisions with which the lines are found.</param>
-            <param name="nfa">Vector containing number of false alarms in the line region, 
-            with precision of 10%. The bigger the value, logarithmically better the detection.</param>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.Detect(OpenCvSharp.InputArray,OpenCvSharp.Vec4f[]@,System.Double[]@,System.Double[]@,System.Double[]@)">
-            <summary>
-            Finds lines in the input image.
-            This is the output of the default parameters of the algorithm on the above shown image.
-            </summary>
-            <param name="image">A grayscale (CV_8UC1) input image. </param>
-            <param name="lines">A vector of Vec4i or Vec4f elements specifying the beginning and ending point of a line. 
-            Where Vec4i/Vec4f is (x1, y1, x2, y2), point 1 is the start, point 2 - end. Returned lines are strictly oriented depending on the gradient.</param>
-            <param name="width">Vector of widths of the regions, where the lines are found. E.g. Width of line.</param>
-            <param name="prec">Vector of precisions with which the lines are found.</param>
-            <param name="nfa">Vector containing number of false alarms in the line region, 
-            with precision of 10%. The bigger the value, logarithmically better the detection.</param>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.DrawSegments(OpenCvSharp.InputOutputArray,OpenCvSharp.InputArray)">
-            <summary>
-            Draws the line segments on a given image.
-            </summary>
-            <param name="image">The image, where the liens will be drawn. 
-            Should be bigger or equal to the image, where the lines were found.</param>
-            <param name="lines">A vector of the lines that needed to be drawn.</param>
-        </member>
-        <member name="M:OpenCvSharp.LineSegmentDetector.CompareSegments(OpenCvSharp.Size,OpenCvSharp.InputArray,OpenCvSharp.InputArray,OpenCvSharp.InputOutputArray)">
-            <summary>
-            Draws two groups of lines in blue and red, counting the non overlapping (mismatching) pixels.
-            </summary>
-            <param name="size">The size of the image, where lines1 and lines2 were found.</param>
-            <param name="lines1">The first group of lines that needs to be drawn. It is visualized in blue color.</param>
-            <param name="lines2">The second group of lines. They visualized in red color.</param>
-            <param name="image">Optional image, where the lines will be drawn. 
-            The image should be color(3-channel) in order for lines1 and lines2 to be drawn 
-            in the above mentioned colors.</param>
-            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.CircleSegment">
             <summary>
